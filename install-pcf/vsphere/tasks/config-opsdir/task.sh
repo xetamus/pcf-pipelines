@@ -81,7 +81,6 @@ network_configuration=$(
     --arg deployment_dns "$DEPLOYMENT_NW_DNS" \
     --arg deployment_gateway "$DEPLOYMENT_NW_GATEWAY" \
     --arg deployment_availability_zones "$DEPLOYMENT_NW_AZS" \
-    --argjson services_network_is_service_network $IS_SERVICE_NETWORK \
     --arg services_network_name "$SERVICES_NETWORK_NAME" \
     --arg services_vcenter_network "$SERVICES_VCENTER_NETWORK" \
     --arg services_network_cidr "$SERVICES_NW_CIDR" \
@@ -102,7 +101,6 @@ network_configuration=$(
       "networks": [
         {
           "name": $infra_network_name,
-          "service_network": false,
           "subnets": [
             {
               "iaas_identifier": $infra_vcenter_network,
@@ -116,7 +114,6 @@ network_configuration=$(
         },
         {
           "name": $deployment_network_name,
-          "service_network": false,
           "subnets": [
             {
               "iaas_identifier": $deployment_vcenter_network,
@@ -130,7 +127,6 @@ network_configuration=$(
         },
         {
           "name": $services_network_name,
-          "service_network": $services_network_is_service_network,
           "subnets": [
             {
               "iaas_identifier": $services_vcenter_network,
@@ -144,7 +140,6 @@ network_configuration=$(
         },
         {
           "name": $dynamic_services_network_name,
-          "service_network": true,
           "subnets": [
             {
               "iaas_identifier": $dynamic_services_vcenter_network,
